@@ -83,6 +83,7 @@ const Experience = () => {
       >
         My Experience
       </motion.h1>
+
       <motion.div
         className="experienceList"
         variants={listVariants}

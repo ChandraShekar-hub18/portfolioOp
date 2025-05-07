@@ -108,14 +108,6 @@ const Portfolio = () => {
   const [containerDistance, setContainerDistance] = useState(0);
   const ref = useRef(null);
 
-  // useEffect(() => {
-  //   if (ref.current) {
-  //     const rect = ref.current.getBoundingClientRect();
-  //     setContainerDistance(rect.left);
-  //   }
-  // }, []);
-
-  // FIX: Re-calculate when screen size changes
   useEffect(() => {
     const calculateDistance = () => {
       if (ref.current) {
@@ -125,12 +117,8 @@ const Portfolio = () => {
     };
 
     calculateDistance();
-
     window.addEventListener("resize", calculateDistance);
-
-    return () => {
-      window.removeEventListener("resize", calculateDistance);
-    };
+    return () => window.removeEventListener("resize", calculateDistance);
   }, []);
 
   const { scrollYProgress } = useScroll({ target: ref });
@@ -138,17 +126,22 @@ const Portfolio = () => {
   const xTranslate = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, -window.innerWidth * items.length]
+    [0, window.innerWidth > 768 ? -window.innerWidth * items.length : 0]
   );
 
   return (
     <div className="portfolio" ref={ref}>
-      <motion.div className="pList" style={{ x: xTranslate }}>
+      <motion.div
+        className="pList"
+        style={{
+          x: window.innerWidth > 768 ? xTranslate : 0,
+          y: window.innerWidth <= 768 ? xTranslate : 0,
+        }}
+      >
         <div
           className="empty"
           style={{
             width: window.innerWidth - containerDistance,
-            // backgroundColor: "pink",
           }}
         />
         {items.map((item) => (

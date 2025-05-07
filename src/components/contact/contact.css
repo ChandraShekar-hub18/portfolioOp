@@ -84,3 +84,10 @@ label {
     height: 30%;
   }
 }
+.footer span {
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  margin-top: -40px;
+}
