@@ -11,7 +11,7 @@ import Loading from "./components/loading/Loading";
 
 const Hero = lazy(() => import("./components/hero/Hero"));
 const Services = lazy(() => import("./components/services/Services"));
-const Experience = lazy(() => import("./components/experience/experience"));
+const Experience = lazy(() => import("./components/experience/Experience"));
 const Portfolio = lazy(() => import("./components/portfolio/Portfolio"));
 const Contact = lazy(() => import("./components/contact/Contact"));
 
